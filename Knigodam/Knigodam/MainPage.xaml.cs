@@ -20,7 +20,7 @@ namespace Knigodam
             InitializeComponent();
             Books = new List<Book>
         {
-            new Book {Title="Тобол. Мало избранных.", ImagePath="tobol.jpg" },
+            new Book {Title="Тобол. Мало избранных", ImagePath="tobol.jpg" },
             new Book {Title="Python для детей", ImagePath="python.jpg" },
             new Book {Title="Тонкое искусство пофигизма", ImagePath="pofigizm.jpg" },
             new Book {Title="Центр тяжести", ImagePath="centre.jpg" },
