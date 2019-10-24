@@ -7,9 +7,9 @@
              x:Class="Knigodam.MainPage">
 
     <StackLayout>
-        <Label x:Name="selected" Text="{Binding Source={x:Reference Name=phonesList}, Path=SelectedItem.Title}"
+        <Label x:Name="selected" Text="{Binding Source={x:Reference Name=bookList}, Path=SelectedItem.Title}"
             FontSize="Large" />
-        <ListView x:Name="phonesList"
+        <ListView x:Name="bookList"
               HasUnevenRows="True"
               ItemsSource="{Binding Books}"
               ItemTapped="OnItemTapped">
