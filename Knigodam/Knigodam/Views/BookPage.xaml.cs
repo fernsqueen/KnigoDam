@@ -19,6 +19,10 @@ namespace Knigodam
         public BookPage(Book selectedBook)
         {
             InitializeComponent();
+
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
             StartChat.Clicked += new EventHandler(Button_Click);
             BindingContext = _viewModel = new BookPageViewModel(selectedBook);
         }

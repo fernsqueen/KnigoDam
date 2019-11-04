@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Knigodam.Views.AuthorizationStep2Page">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Код отправлен на ваш номер. Введите его в поле ниже."/>
+            <Entry x:Name="Code" Placeholder=""/>
+            <Button x:Name="SubmitNumber" Text="Отправить"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

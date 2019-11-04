@@ -7,8 +7,14 @@
              x:Class="Knigodam.MainPage">
 
     <StackLayout>
-        <Label x:Name="selected" Text="{Binding Source={x:Reference Name=bookList}, Path=SelectedItem.Title}"
-            FontSize="Large" />
+        <StackLayout Orientation="Horizontal">
+            <SearchBar x:Name="searchBook"
+           Placeholder="Найти книгу..."/>
+            <Button x:Name="advSearch" ImageSource="prop_icon.png" 
+                    WidthRequest="30" HeightRequest="20" BackgroundColor="White"
+                    Clicked="advSearch_Clicked"></Button>
+        </StackLayout> 
+       
         <ListView x:Name="bookList"
               HasUnevenRows="True"
               ItemsSource="{Binding Books}"
@@ -26,6 +32,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Text="Разместить книгу" Clicked="AddBookButton_Clicked"></Button>
+            <Button Grid.Column="1" Text="Личные сообщения" Clicked="DMButton_Clicked"></Button>
+            <Button Grid.Column="2" Text="Управление книгами" Clicked="EditButton_Clicked"></Button>
+        </Grid>
     </StackLayout>
 
 </ContentPage>

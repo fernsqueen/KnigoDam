@@ -5794,16 +5794,22 @@ namespace Knigodam.Droid
 			public const int pofigizm = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int python = 2131165302;
+			public const int prop_icon = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int tobol = 2131165303;
+			public const int python = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int tooltip_frame_dark = 2131165304;
+			public const int splashscreen = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int tooltip_frame_light = 2131165305;
+			public const int tobol = 2131165305;
+			
+			// aapt resource value: 0x7F07007A
+			public const int tooltip_frame_dark = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public const int tooltip_frame_light = 2131165307;
 			
 			static Drawable()
 			{

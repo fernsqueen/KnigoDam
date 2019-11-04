@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Knigodam.AddBookPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry x:Name="Title" Placeholder="Заглавие"/>
+                <Entry x:Name="Publisher" Placeholder="Издательство"/>
+                <Entry x:Name="Autor" Placeholder="Автор"/>
+                <Entry x:Name="PublishYear" Placeholder="Год"/>
+                <Entry x:Name="ISBN" Placeholder="ISBN"/>
+                <Label Text="Обложка книги"/>
+                <StackLayout>
+                    <Button Text="Загрузить изображение"/>
+                    <Label Text="OR"/>
+                    <Button Text="Сфотографировать"/>
+                </StackLayout>
+                <Label Text="Информация о себе"/>
+                <Entry x:Name="Town" Placeholder="Город"/>
+                <Entry x:Name="PhoneNumber" Placeholder="Номер телефона который не нужен при авторизации"/>
+                <Button Text="Разместить книгу"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

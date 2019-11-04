@@ -9,10 +9,11 @@ namespace Knigodam
         public App()
         {
             InitializeComponent();
-
+            
+            MainPage = new NavigationPage(new MainPage());
             //MainPage = new MainPage();
             //BookSearchPage = new BookSearchPage();
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
