@@ -2,6 +2,7 @@
 using Knigodam.Models;
 using Knigodam.Services;
 using Knigodam.Services.Fakes;
+using Knigodam.ViewModels;
 using Knigodam.Views;
 using System;
 using System.Collections.Generic;
@@ -18,42 +19,19 @@ namespace Knigodam
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        static void RegisterMyService()
-        {
-            Service<IBooksService>.RegisterService(new FakeBooksService());
-        }
-
-        public List<Book> Books { get; set; }
+        MainPageViewModel _viewModel;
 
         public MainPage()
         {
             InitializeComponent();
 
-            RegisterMyService();
-
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Books=new List<Book>{
-            new Book { Title = "Тобол. Мало избранных", ImagePath = "tobol.jpg", Description = "Описание1" },
-            new Book { Title = "Python для детей", ImagePath = "python.jpg", Description = "Описание2" },
-            new Book { Title = "Тонкое искусство пофигизма", ImagePath = "pofigizm.jpg", Description = "Описание3" },
-            new Book { Title = "Центр тяжести", ImagePath = "centre.jpg", Description = "Описание4" },
-            new Book { Title = "123456", ImagePath = "centre.jpg", Description = "Описание4" }
-            };
+            _viewModel = new MainPageViewModel();
 
-
-            //Books = GetBooks();
-
-            this.BindingContext = this;
+            this.BindingContext = _viewModel;
+         
         }
-
-        async Task<List<Book>> GetBooks()
-        {
-            var books = await Service<IBooksService>.GetInstance().GetBooks();
-            return books;
-        }
-
-
 
         async private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -73,20 +51,29 @@ namespace Knigodam
 
         async private void DMButton_Clicked(object sender, EventArgs e)
         {
+            if (_viewModel.SessionId == null) Authorization();
             DMPage page = new DMPage();
             await Navigation.PushAsync(page);
         }
 
         async private void EditButton_Clicked(object sender, EventArgs e)
         {
+            if (_viewModel.SessionId == null) Authorization();
             UserBooksPage page = new UserBooksPage();
             await Navigation.PushAsync(page);
         }
 
         async private void advSearch_Clicked(object sender, EventArgs e)
         {
+            if (_viewModel.SessionId == null) Authorization();
             AdvanceSearchPage page = new AdvanceSearchPage();
             await Navigation.PushAsync(page);
+        }
+
+        async private void Authorization()
+        {
+            // regist
+            // vm id = flgkglgfk
         }
     }
 }

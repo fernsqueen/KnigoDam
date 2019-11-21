@@ -1,4 +1,5 @@
 ﻿using Knigodam.Models;
+using Knigodam.ViewModels;
 using Knigodam.Views;
 using System;
 using System.Collections.Generic;
@@ -14,19 +15,16 @@ namespace Knigodam
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserBooksPage : ContentPage
     {
-        public List<Book> Books { get; set; }
+        UserBooksPageViewModel _viesModel;
         public UserBooksPage()
         {
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Books = new List<Book>
-        {
-            new Book {Title="Тобол. Мало избранных", ImagePath="tobol.jpg", Description="Описание1" },
-            new Book {Title="Python для детей", ImagePath="python.jpg", Description="Описание2" },
-        };
-            this.BindingContext = this;
+            _viesModel = new UserBooksPageViewModel();
+
+            this.BindingContext = _viesModel;
         }
 
         async private void OnItemTapped(object sender, ItemTappedEventArgs e)
