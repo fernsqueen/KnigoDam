@@ -7,9 +7,14 @@
              x:Class="Knigodam.Views.AdvanceSearchPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Расширенные настройки"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Поиск по параметрам" FontAttributes="Bold" TextColor="#1B5F4A"/>
+            <Entry x:Name="Title" Placeholder="Заглавие"/>
+            <Entry x:Name="Publisher" Placeholder="Издательство"/>
+            <Entry x:Name="Autor" Placeholder="Автор"/>
+            <Entry x:Name="PublishYear" Placeholder="Год"/>
+            <Entry x:Name="ISBN" Placeholder="ISBN"/>
+            <Entry x:Name="Town" Placeholder="Город"/>
+            <Button Text="Применить и начать поиск"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

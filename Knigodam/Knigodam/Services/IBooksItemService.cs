@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Knigodam.Services
+namespace Knigodam.Services.Fakes
 {
-    interface IBooksService
+    interface IBooksItemService
     {
-        Task<List<Book>> GetBooks();
+        Task<List<BookItem>> GetBooks();
     }
 }

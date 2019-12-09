@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Knigodam.Models
 {
-    class BookItem
+    public class BookItem
     {
         public int Id { get; set; }
         public string Title { get; set; }

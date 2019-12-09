@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Knigodam.Models
 {
-    class User
+    public class User
     {
+        public int Id { get; set; }
         public string Number { get; set; }
         public List<Book> Books { get; set; }
     }

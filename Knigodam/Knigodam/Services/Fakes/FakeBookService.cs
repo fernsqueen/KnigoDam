@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Knigodam.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Knigodam.Models;
 
 namespace Knigodam.Services.Fakes
 {
-    public class FakeUserBooksService : IUserBooksService
+    class FakeBookService : IBookService
     {
         List<Book> books;
-        public async Task<List<Book>> GetUserBooks(int userId)
+        public async Task<Book> GetBook(int id)
         {
             books = new List<Book>()
             {
@@ -20,15 +20,7 @@ namespace Knigodam.Services.Fakes
             new Book {Id = 5, Title="123456", ImagePath="centre.jpg", Description="Описание4", UserId = 2 },
             };
 
-            List<Book> userBooks = new List<Book>();
-            foreach (Book book in books)
-            {
-                if (book.UserId == userId)
-                {
-                    userBooks.Add(book);
-                }
-            }
-            return userBooks;
+            return books[id-1];
         }
     }
 }

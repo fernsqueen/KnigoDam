@@ -1,6 +1,7 @@
 ﻿using Knigodam.Models;
 using Knigodam.Services;
 using Knigodam.Services.Fakes;
+using Knigodam.Services.Implementation;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -13,18 +14,30 @@ namespace Knigodam.ViewModels
     {
         static void RegisterMyService()
         {
-            Service<IUserBooks>.RegisterService(new FakeUserBooksService());
+            //Service<IUserBooksService>.RegisterService(new FakeUserBooksService());
+            Service<IUserBooksService>.RegisterService(new UserBooksService());
         }
-        public List<Book> Books { get; set; }
 
-        public string sessionId;
-        public string SessionId
+        public int id;
+
+        public int Id
         {
-            get { return sessionId; }
-            set { SetProperty(ref sessionId, value); }
+            get { return id; }
+            set { SetProperty(ref id, value); }
         }
-        public UserBooksPageViewModel()
+
+        public List<Book> books;
+
+        public List<Book> Books
         {
+            get { return books; }
+            set { SetProperty(ref books, value); }
+        }
+
+        public UserBooksPageViewModel(User user)
+        {
+            Id = user.Id;
+            Books = new List<Book>();
             //SessionId = sessionId;
             RegisterMyService();
             LoadBook();
@@ -37,7 +50,7 @@ namespace Knigodam.ViewModels
 
         async Task<List<Book>> GetBooks()
         {
-            var books = await Service<IUserBooks>.GetInstance().GetUserBooks();
+            var books = await Service<IUserBooksService>.GetInstance().GetUserBooks(Id);
             return books;
         }
 

@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Введите номер телефона"/>
-            <Entry x:Name="PhoneNumber" Placeholder="Ваш номер в формате N"/>
+            <Entry x:Name="PhoneNumber" Placeholder="Debug number is user id"/>
             <Button x:Name="SubmitNumber" Text="Отправить" Clicked="SubmitNumber_Clicked"/>
         </StackLayout>
     </ContentPage.Content>

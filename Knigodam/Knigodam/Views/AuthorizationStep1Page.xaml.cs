@@ -1,5 +1,7 @@
-﻿using Knigodam.Services;
+﻿using Knigodam.Models;
+using Knigodam.Services;
 using Knigodam.Services.Fakes;
+using Knigodam.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +16,27 @@ namespace Knigodam.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AuthorizationStep1Page : ContentPage
     {
-        static void RegisterMyService()
-        {
-            Service<IAuthorizationService>.RegisterService(new FakeAuthorizationService());
-        }
-        string sessionId { get; set; }
+        AuthorizationStep1PageViewModel _viewModel;
         public AuthorizationStep1Page()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+            _viewModel = new AuthorizationStep1PageViewModel();
+            _viewModel.AuthorizationStep2Open += AuthorizationStep2Open;
         }
 
-        private void SubmitNumber_Clicked(object sender, EventArgs e)
+        async private void AuthorizationStep2Open(object sender, EventArgs e)
         {
-
+            var page = new AuthorizationStep2Page();
+            await Navigation.PushAsync(page);
         }
+
+        async private void SubmitNumber_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.GetCode(PhoneNumber.Text);
+        }
+
+
+
     }
 }

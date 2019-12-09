@@ -30,7 +30,7 @@ namespace Knigodam
         private void Button_Click(object sender, EventArgs e)
         {
             // Переход на чат
-            debug.Text = "Кнопка определённо работает";
+            debug.Text = "Чата нет, но кнопка есть";
         }
     }
 }

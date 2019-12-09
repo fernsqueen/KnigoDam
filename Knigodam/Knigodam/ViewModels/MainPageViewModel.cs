@@ -1,29 +1,68 @@
 ﻿using Knigodam.Models;
 using Knigodam.Services;
 using Knigodam.Services.Fakes;
+using Knigodam.Services.Implementation;
+using Knigodam.Views;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Knigodam.ViewModels
 {
+
     public class MainPageViewModel : BaseViewModel
     {
         static void RegisterMyService()
         {
-            Service<IBooksService>.RegisterService(new FakeBooksService());
+            Service<IBooksItemService>.RegisterService(new BookItemService());
+            // FakeAuthorizationService
+            //Service<IBooksItemService>.RegisterService(new FakeBookItemService());
+
+            Service<IAuthorizationService>.RegisterService(new FakeAuthorizationService());
+
+            Service<ISearchService>.RegisterService(new SearchService());
         }
 
-        public List<Book> Books { get; set; }
+        public event EventHandler AuthorizationOpen;
 
-        public string SessionId { get; set; }
+        public List<BookItem> books;
 
-        public MainPageViewModel()
+        public List<BookItem> Books
+        {
+            get { return books; }
+            set { SetProperty(ref books, value); }
+        }
+
+
+        public User User { get; set; }
+
+        public string SessionCode { get; set; }
+
+        public MainPageViewModel(string sessionCode)
         {
             RegisterMyService();
+            SessionCode = sessionCode;
+            Autorization();
             LoadBook();
+        }
+
+        public async void Autorization()
+        {
+            
+            if (SessionCode == "")
+            {
+                AuthorizationOpen?.Invoke(this, null);
+            }            
+            else 
+            {
+                GetUser();
+                AuthorizationCheck();
+                if (!AuthorizationStatus)
+                    AuthorizationOpen?.Invoke(this, null);
+            }
         }
 
         async void LoadBook()
@@ -32,16 +71,51 @@ namespace Knigodam.ViewModels
             Books = result;
         }
 
-        async Task<List<Book>> GetBooks()
+
+        async Task<List<BookItem>> GetBooks()
         {
-            var books = await Service<IBooksService>.GetInstance().GetBooks();
+            var books = await Service<IBooksItemService>.GetInstance().GetBooks();
             return books;
         }
 
-        async Task<string> GetSessionId()
+        async void AuthorizationCheck()
         {
-            var sessionId = await GetSessionId();
-            return sessionId;
+            var result = await IsAuthorizated();
+            AuthorizationStatus = result;
+        }
+
+        bool AuthorizationStatus { get; set; }
+
+        async Task<bool> IsAuthorizated()
+        {
+            var isAuth = await Service<IAuthorizationService>.GetInstance().IsAuthorizate(User.Number);
+            return isAuth;
+        }
+
+        async void GetUser()
+        {
+            var result = await GetUserFrom();
+            User = result;
+        }
+
+        async Task<User> GetUserFrom()
+        {
+            var user = await Service<IAuthorizationService>.GetInstance().GetUser(SessionCode);
+            return user;
+        }
+
+        public async Task<bool> Search(string entry)
+        {
+            var result = await GetSearchedBooks(entry);
+            Books = result;
+            return true;
+        }
+
+
+        async Task<List<BookItem>> GetSearchedBooks(string entry)
+        {
+            var books = await Service<ISearchService>.GetInstance().GetSimpleSearchedBooks(entry);
+            return books;
         }
     }
 }

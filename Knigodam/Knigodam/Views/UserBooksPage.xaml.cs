@@ -16,13 +16,13 @@ namespace Knigodam
     public partial class UserBooksPage : ContentPage
     {
         UserBooksPageViewModel _viesModel;
-        public UserBooksPage()
+        public UserBooksPage(User user)
         {
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            _viesModel = new UserBooksPageViewModel();
+            _viesModel = new UserBooksPageViewModel(user);
 
             this.BindingContext = _viesModel;
         }

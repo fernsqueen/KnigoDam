@@ -9,12 +9,12 @@
     <StackLayout>
         <StackLayout Orientation="Horizontal">
             <SearchBar x:Name="searchBook"
-           Placeholder="Найти книгу..."/>
+           Placeholder="Найти книгу..." SearchButtonPressed="searchBook_SearchButtonPressed"/>
             <Button x:Name="advSearch" ImageSource="prop_icon.png" 
                     WidthRequest="30" HeightRequest="20" BackgroundColor="White"
                     Clicked="advSearch_Clicked"></Button>
-        </StackLayout> 
-       
+        </StackLayout>
+        <Label x:Name="Loading"></Label>
         <ListView x:Name="bookList"
               HasUnevenRows="True"
               ItemsSource="{Binding Books}"

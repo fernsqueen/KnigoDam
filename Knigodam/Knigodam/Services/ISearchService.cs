@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Knigodam.Services
 {
-    interface IUserBooks
+    interface ISearchService
     {
-        Task<List<Book>> GetUserBooks();
+        Task<List<BookItem>> GetSimpleSearchedBooks(string entry);
     }
 }

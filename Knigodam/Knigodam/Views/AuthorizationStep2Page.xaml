@@ -8,9 +8,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Код отправлен на ваш номер. Введите его в поле ниже."/>
-            <Entry x:Name="Code" Placeholder="Debug Code = 1234"/>
+            <Entry x:Name="Code" Placeholder="Debug Code = UserId" Keyboard="Numeric"/>
             <Label x:Name="CodeError" Text="" TextColor="Red"/>
-            <Button x:Name="SubmitNumber" Text="Отправить"/>
+            <Button x:Name="SubmitCode" Text="Отправить" Clicked="SubmitCode_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

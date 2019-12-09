@@ -15,6 +15,7 @@ namespace Knigodam.Views
         public AdvanceSearchPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }
