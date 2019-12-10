@@ -7,6 +7,8 @@
              x:Class="Knigodam.BookPage">
     <ContentPage.Content>
         <StackLayout>
+            <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
+               HorizontalOptions="CenterAndExpand"/>
             <Label Text="{Binding BookTitle}" FontAttributes="Bold" FontSize="Large"/>
             <Image Source="{Binding ImageSource}" WidthRequest="120" HeightRequest="200"></Image>
             <Label Text="{Binding Description}" FontSize="Medium"/>

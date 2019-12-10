@@ -6,19 +6,21 @@
              mc:Ignorable="d"
              x:Class="Knigodam.MainPage">
 
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <SearchBar x:Name="searchBook"
+    <StackLayout BackgroundColor="#EEEEEE">
+        <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
+               HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Orientation="Horizontal" BackgroundColor="#FFFFFF">
+            <SearchBar x:Name="searchBook" TextChanged="searchBook_TextChanged"
            Placeholder="Найти книгу..." SearchButtonPressed="searchBook_SearchButtonPressed"/>
             <Button x:Name="advSearch" ImageSource="prop_icon.png" 
                     WidthRequest="30" HeightRequest="20" BackgroundColor="White"
                     Clicked="advSearch_Clicked"></Button>
         </StackLayout>
-        <Label x:Name="Loading"></Label>
+        <Label x:Name="EmptyList" Text="Ничего не найдено :(" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
         <ListView x:Name="bookList"
               HasUnevenRows="True"
               ItemsSource="{Binding Books}"
-              ItemTapped="OnItemTapped">
+              ItemTapped="OnItemTapped" BackgroundColor="#FFFFFF">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -32,13 +34,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid>
-            <Grid.RowDefinitions>
+        <Grid BackgroundColor="#FFFFFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions BackgroundColor="#EEEEEE">
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
-            <Button Grid.Column="0" Text="Разместить книгу" Clicked="AddBookButton_Clicked"></Button>
-            <Button Grid.Column="1" Text="Личные сообщения" Clicked="DMButton_Clicked"></Button>
-            <Button Grid.Column="2" Text="Управление книгами" Clicked="EditButton_Clicked"></Button>
+            <Button x:Name="AddBookButton" Grid.Column="0" Clicked="AddBookButton_Clicked" ImageSource="add__icon.png" BackgroundColor="#FFFFFF" VerticalOptions="End"></Button>
+            <Button x:Name="DMButton" Grid.Column="1" Clicked="DMButton_Clicked" ImageSource="dm_icon.png" BackgroundColor="White" VerticalOptions="End"></Button>
+            <Button x:Name="EditButton" Grid.Column="2" Clicked="EditButton_Clicked" ImageSource="userbooks_icon.png" BackgroundColor="#FFFFFF" VerticalOptions="End"></Button>
         </Grid>
     </StackLayout>
 

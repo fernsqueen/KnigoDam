@@ -31,7 +31,8 @@ namespace Knigodam.Views
 
         async private void SubmitCode_Clicked(object sender, EventArgs e)
         {
-            _viewModel.Authorizate(int.Parse(Code.Text));
+            if (Code.Text != null) _viewModel.Authorizate(int.Parse(Code.Text));
+            else CodeError.Text = "Пожалуйста, введите код";
         }
     }
 }

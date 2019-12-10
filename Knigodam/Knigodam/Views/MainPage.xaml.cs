@@ -33,12 +33,26 @@ namespace Knigodam
 
             _viewModel.AuthorizationOpen += Authorization;
 
-            _viewModel.Autorization();
+            _viewModel.BookListIsEmpty += BookListIsEmpty;
 
-            //_viewModel.User = new User { Id = 1, Number = "1234" };
+            _viewModel.BookListIsNotEmpty += BookListIsNotEmpty;
+
+            _viewModel.Autorization();
 
             this.BindingContext = _viewModel;
 
+        }
+
+        private void BookListIsNotEmpty(object sender, EventArgs e)
+        {
+            bookList.IsVisible = true;
+            EmptyList.IsVisible = false;
+        }
+
+        private void BookListIsEmpty(object sender, EventArgs e)
+        {
+            bookList.IsVisible = false;
+            EmptyList.IsVisible = true;
         }
 
         async private void OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -48,7 +62,6 @@ namespace Knigodam
                                             Title = bookItem.Title};
             BookPage page = new BookPage(book);
             var lv = sender as ListView;
-            //lv.IsEnabled = false;
             lv.SelectedItem = null;
             await Navigation.PushAsync(page);
         }
@@ -61,28 +74,18 @@ namespace Knigodam
 
         async private void DMButton_Clicked(object sender, EventArgs e)
         {
-            if (_viewModel.User == null)
-            {
-                //var _page = new AuthorizationStep1Page();
-                //page.GetUser += OnUserAuthorizated;
-                //await Navigation.PushAsync(_page);
-            }
-
-            _viewModel.User = new User { Id = 1, Number = "1234" };
             DMPage page = new DMPage();
             await Navigation.PushAsync(page);
         }
 
         async private void EditButton_Clicked(object sender, EventArgs e)
         {
-            if (_viewModel.User == null) Authorization(sender, e);
             UserBooksPage page = new UserBooksPage(_viewModel.User);
             await Navigation.PushAsync(page);
         }
 
         async private void advSearch_Clicked(object sender, EventArgs e)
         {
-            if (_viewModel.User == null) Authorization(sender, e);
             AdvanceSearchPage page = new AdvanceSearchPage();
             await Navigation.PushAsync(page);
         }
@@ -93,16 +96,18 @@ namespace Knigodam
             await Navigation.PushAsync(page);
         }
 
-        private void OnUserAuthorizated(object sender, User user)
-        {
-            _viewModel.User = user;
-        }
 
         async private void searchBook_SearchButtonPressed(object sender, EventArgs e)
         {
             await _viewModel.Search(searchBook.Text);
 
             this.BindingContext = _viewModel;
+        }
+
+        async private void searchBook_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (searchBook.Text == "") _viewModel.LoadBook();
+            else await _viewModel.Search(searchBook.Text);
         }
     }
 }

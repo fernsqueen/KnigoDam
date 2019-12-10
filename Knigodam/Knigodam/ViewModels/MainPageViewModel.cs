@@ -65,10 +65,15 @@ namespace Knigodam.ViewModels
             }
         }
 
-        async void LoadBook()
+        public event EventHandler BookListIsEmpty;
+        public event EventHandler BookListIsNotEmpty;
+
+        public async void LoadBook()
         {
             var result = await GetBooks();
             Books = result;
+            if (result.Count == 0) BookListIsEmpty?.Invoke(this, null);
+            else BookListIsNotEmpty?.Invoke(this, null);
         }
 
 
@@ -108,6 +113,8 @@ namespace Knigodam.ViewModels
         {
             var result = await GetSearchedBooks(entry);
             Books = result;
+            if (result.Count == 0) BookListIsEmpty?.Invoke(this, null);
+            else BookListIsNotEmpty?.Invoke(this, null);
             return true;
         }
 

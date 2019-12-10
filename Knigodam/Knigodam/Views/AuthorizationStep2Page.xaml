@@ -6,11 +6,13 @@
              mc:Ignorable="d"
              x:Class="Knigodam.Views.AuthorizationStep2Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Код отправлен на ваш номер. Введите его в поле ниже."/>
-            <Entry x:Name="Code" Placeholder="Debug Code = UserId" Keyboard="Numeric"/>
-            <Label x:Name="CodeError" Text="" TextColor="Red"/>
-            <Button x:Name="SubmitCode" Text="Отправить" Clicked="SubmitCode_Clicked"/>
+        <StackLayout HorizontalOptions="Center" Margin="10,20,10,0">
+            <Image Source="logo_icon.png"/>
+            <Label Text="Код отправлен на ваш номер. Введите его в поле ниже." FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="#192B33"/>
+            <Entry x:Name="Code" Placeholder="Введите код..." Keyboard="Numeric" Margin="10,10,10,0"/>
+            <Label x:Name="CodeError" Text="" TextColor="Red" Margin="10,0,0,0"/>
+            <Button x:Name="SubmitCode" Text="Отправить" Clicked="SubmitCode_Clicked" 
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF" Margin="10,0" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

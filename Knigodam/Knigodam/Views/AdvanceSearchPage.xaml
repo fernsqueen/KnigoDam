@@ -6,15 +6,19 @@
              mc:Ignorable="d"
              x:Class="Knigodam.Views.AdvanceSearchPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Поиск по параметрам" FontAttributes="Bold" TextColor="#1B5F4A"/>
-            <Entry x:Name="Title" Placeholder="Заглавие"/>
-            <Entry x:Name="Publisher" Placeholder="Издательство"/>
-            <Entry x:Name="Autor" Placeholder="Автор"/>
-            <Entry x:Name="PublishYear" Placeholder="Год"/>
-            <Entry x:Name="ISBN" Placeholder="ISBN"/>
-            <Entry x:Name="Town" Placeholder="Город"/>
-            <Button Text="Применить и начать поиск"/>
+        <StackLayout BackgroundColor="#EEEEEE">
+            <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
+               HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Поиск по параметрам" FontAttributes="Bold" TextColor="#1B5F4A" FontSize="Large" Margin="10,10,0,0"/>
+            <Entry x:Name="Title" Placeholder="Заглавие" Margin="10,0"/>
+            <Entry x:Name="Publisher" Placeholder="Издательство" Margin="10,0"/>
+            <Entry x:Name="Autor" Placeholder="Автор" Margin="10,0"/>
+            <Entry x:Name="PublishYear" Placeholder="Год" Margin="10,0"/>
+            <Entry x:Name="ISBN" Placeholder="ISBN" Margin="10,0"/>
+            <Entry x:Name="Town" Placeholder="Город" Margin="10,0"/>
+            <Button Text="Применить и начать поиск" ImageSource="search_icon.png" 
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF" 
+                    Margin="10,0" HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -6,10 +6,13 @@
              mc:Ignorable="d"
              x:Class="Knigodam.Views.AuthorizationStep1Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Введите номер телефона"/>
-            <Entry x:Name="PhoneNumber" Placeholder="Debug number is user id"/>
-            <Button x:Name="SubmitNumber" Text="Отправить" Clicked="SubmitNumber_Clicked"/>
+        <StackLayout HorizontalOptions="Center" Margin="10,20,10,0">
+            <Image Source="logo_icon.png"/>
+            <Label Text="Авторизуйтесь, чтобы получить доступ ко всем функциям приложения" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="#192B33"/>
+            <Entry x:Name="PhoneNumber" Placeholder="Введите номер..." Margin="10,10,10,0"/>
+            <Label x:Name="CodeError" Text="" TextColor="Red" Margin="10,0,0,0"/>
+            <Button x:Name="SubmitNumber" Text="Отправить" Clicked="SubmitNumber_Clicked" 
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF" Margin="10,0" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

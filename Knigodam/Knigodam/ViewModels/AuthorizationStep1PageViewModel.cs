@@ -30,24 +30,35 @@ namespace Knigodam.ViewModels
 
         public event EventHandler AuthorizationStep2Open;
 
+        public event EventHandler PhoneCheckError;
+
         public void GetCode(string phoneNumber)
         {
             PhoneNumber = phoneNumber;
             GetCodeForAuth();
-            AuthorizationStep2Open?.Invoke(this, null);
+            if (SmsCode!=-1) AuthorizationStep2Open?.Invoke(this, null);
+            else PhoneCheckError?.Invoke(this, null);
         }
 
         async void GetCodeForAuth()
         {
             var result = await GetCodeFrom();
-            SmsCode = result;
+            SmsCode = result;            
         }
 
         public int SmsCode { get; set; }
 
         async Task<int> GetCodeFrom()
         {
-            var code = await Service<IAuthorizationService>.GetInstance().GetSms(phoneNumber);
+            int code;
+            try
+            {
+                code = await Service<IAuthorizationService>.GetInstance().GetSms(phoneNumber);
+            }
+            catch(Exception ex)
+            {
+                code = -1;
+            }         
             return code;
         }
     }

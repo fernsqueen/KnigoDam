@@ -23,6 +23,12 @@ namespace Knigodam.Views
             InitializeComponent();
             _viewModel = new AuthorizationStep1PageViewModel();
             _viewModel.AuthorizationStep2Open += AuthorizationStep2Open;
+            _viewModel.PhoneCheckError += PhoneCheckError;
+        }
+
+        private void PhoneCheckError(object sender, EventArgs e)
+        {
+            CodeError.Text = "Неверный формат номера";
         }
 
         async private void AuthorizationStep2Open(object sender, EventArgs e)
@@ -33,7 +39,9 @@ namespace Knigodam.Views
 
         async private void SubmitNumber_Clicked(object sender, EventArgs e)
         {
-            _viewModel.GetCode(PhoneNumber.Text);
+            if (PhoneNumber.Text != null) _viewModel.GetCode(PhoneNumber.Text);
+            else CodeError.Text = "Пожалуйста, введите номер";
+
         }
 
 
