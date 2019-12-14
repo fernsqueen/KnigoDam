@@ -46,22 +46,62 @@ namespace Knigodam.ViewModels
             set { SetProperty(ref description, value); }
         }
 
+        public string author;
+
+        public string Author
+        {
+            get { return author; }
+            set { SetProperty(ref author, value); }
+        }
+
+        public string publisher;
+
+        public string Publisher
+        {
+            get { return publisher; }
+            set { SetProperty(ref publisher, value); }
+        }
+
+        public string language;
+
+        public string Language
+        {
+            get { return language; }
+            set { SetProperty(ref language, value); }
+        }
+
+        public int year;
+
+        public int Year
+        {
+            get { return year; }
+            set { SetProperty(ref year, value); }
+        }
+
         public BookPageViewModel(Book book)
         {
-            _book = new Book { Id = book.Id, ImagePath = book.ImagePath, Title = book.Title };
+            _book = new Book { Id = book.Id, ImagePath = book.ImagePath, Title = book.Title};
             ImageSource = book.ImagePath;
             BookTitle = book.Title;
             RegisterMyService();
             LoadBook();
         }
 
+        public event EventHandler OnBookSetted;
+
         async void LoadBook()
         {
             var result = await GetBook();
             var book = result as Book;
             Description = book.Description;
+            Author = book.Author;
+            Year = book.Year;
+            Publisher = book.PublishingHouse;
+            Language = book.Language;
             _book.Description = book.Description;
             _book.UserId = book.UserId;
+            _book.Author = book.Author;
+            OnBookSetted?.Invoke(this, null);
         }
 
         async Task<Book> GetBook()

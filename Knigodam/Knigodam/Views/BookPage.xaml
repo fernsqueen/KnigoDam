@@ -6,14 +6,30 @@
              mc:Ignorable="d"
              x:Class="Knigodam.BookPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
+        <ScrollView>
+            <StackLayout>
+                <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
                HorizontalOptions="CenterAndExpand"/>
-            <Label Text="{Binding BookTitle}" FontAttributes="Bold" FontSize="Large"/>
-            <Image Source="{Binding ImageSource}" WidthRequest="120" HeightRequest="200"></Image>
-            <Label Text="{Binding Description}" FontSize="Medium"/>
-            <Button x:Name="StartChat" Text="Начать чат"/>
-            <Label x:Name="debug" />
-        </StackLayout>
+                <Label Text="{Binding BookTitle}" FontAttributes="Bold" FontSize="Large" Margin="10,0"/>
+                <Image Source="{Binding ImageSource}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center"></Image>
+                <Label Text="{Binding Description}" FontSize="Medium" Margin="10,0"/>
+                <Grid x:Name="InfoGrid" Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="author_l1" Text="Автор" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" TextColor="#143C3D" FontSize="Medium"/>
+                    <Label x:Name="author_l2" Text="{Binding Author}" Grid.Column="1" Grid.Row="0" FontSize="Medium"/>
+                    <Label x:Name="year_l1" Text="Год" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" TextColor="#143C3D" FontSize="Medium"/>
+                    <Label x:Name="year_l2" Text="{Binding Year}" Grid.Column="1" Grid.Row="1" FontSize="Medium"/>
+                    <Label x:Name="publ_l1" Text="Издательство" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#143C3D" FontSize="Medium"/>
+                    <Label x:Name="publ_l2" Text="{Binding Publisher}" Grid.Column="1" Grid.Row="2" FontSize="Medium"/>
+                    <Label x:Name="lang_l1" Text="Язык" Grid.Column="0" Grid.Row="3" FontAttributes="Bold" TextColor="#143C3D" FontSize="Medium"/>
+                    <Label x:Name="lang_l2" Text="{Binding Language}" Grid.Column="1" Grid.Row="3" FontSize="Medium"/>
+                </Grid>
+                <Button x:Name="StartChat" Text="Начать чат"
+                        BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF" Margin="10,0"/>
+                <Label x:Name="debug" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

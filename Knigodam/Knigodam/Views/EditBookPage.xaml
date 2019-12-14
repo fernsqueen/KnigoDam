@@ -6,16 +6,20 @@
              mc:Ignorable="d"
              x:Class="Knigodam.Views.EditBookPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="5,5,5,0">
             <Image Source="pages_logo_icon.png" WidthRequest="25" HeightRequest="25" 
                HorizontalOptions="CenterAndExpand"/>
             <StackLayout Orientation="Horizontal">
                 <Image Source="{Binding ImageSource}" WidthRequest="50" HeightRequest="120"></Image>
-                <Label Text="{Binding BookTitle}" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="{Binding BookTitle}" FontAttributes="Bold" FontSize="Large" VerticalOptions="Center"/>
             </StackLayout>
-            <Button x:Name="Edit" Text="Редактировать описание"/>
-            <Button x:Name="ChangeStatus" Text="Изменить статус"/>
-            <Button x:Name="Delete" Text="Удалить книгу"/>
+            <Label Text="{Binding Status}" FontSize="Medium"/>
+            <Button x:Name="Edit" Text="Редактировать описание"
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF"/>
+            <Button x:Name="ChangeStatus" Text="Изменить статус" Clicked="ChangeStatus_Clicked"
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF"/>
+            <Button x:Name="Delete" Text="Удалить книгу" Clicked="Delete_Clicked"
+                    BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

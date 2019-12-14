@@ -42,7 +42,7 @@ namespace Knigodam.ViewModels
             RegisterMyService();
             LoadBook();
         }
-        async void LoadBook()
+        public async void LoadBook()
         {
             var result = await GetBooks();
             Books = result;

@@ -34,9 +34,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid BackgroundColor="#FFFFFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid BackgroundColor="#FFFFFF" VerticalOptions="End" HorizontalOptions="FillAndExpand">
             <Grid.RowDefinitions BackgroundColor="#EEEEEE">
-                <RowDefinition Height="70" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Button x:Name="AddBookButton" Grid.Column="0" Clicked="AddBookButton_Clicked" ImageSource="add__icon.png" BackgroundColor="#FFFFFF" VerticalOptions="End"></Button>
             <Button x:Name="DMButton" Grid.Column="1" Clicked="DMButton_Clicked" ImageSource="dm_icon.png" BackgroundColor="White" VerticalOptions="End"></Button>

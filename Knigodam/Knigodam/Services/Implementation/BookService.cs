@@ -28,7 +28,12 @@ namespace Knigodam.Services.Implementation
                 Id = json_books.id,
                 Description = json_books.description,
                 Title = json_books.title,
-                UserId = json_books.user_id
+                UserId = json_books.user_id,
+                PublishingHouse = json_books.publishing_house,
+                Author = json_books.author,
+                Year = json_books.year,
+                Status = json_books.status,
+                Language = json_books.language
             };
 
         }
@@ -40,6 +45,11 @@ namespace Knigodam.Services.Implementation
             public string description { get; set; }
             public string img { get; set; }
             public int user_id { get; set; }
+            public string publishing_house { get; set; }
+            public string author { get; set; }
+            public int year { get; set; }
+            public string status { get; set; }
+            public string language { get; set; }
         }
     }
 }

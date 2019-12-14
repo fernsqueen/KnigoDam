@@ -16,8 +16,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Knigodam
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
@@ -81,7 +79,13 @@ namespace Knigodam
         async private void EditButton_Clicked(object sender, EventArgs e)
         {
             UserBooksPage page = new UserBooksPage(_viewModel.User);
+            page.BookListIsUpdatedOverall += BookListIsUpdated;
             await Navigation.PushAsync(page);
+        }
+
+        private void BookListIsUpdated(object sender, EventArgs e)
+        {
+            _viewModel.LoadBook();
         }
 
         async private void advSearch_Clicked(object sender, EventArgs e)

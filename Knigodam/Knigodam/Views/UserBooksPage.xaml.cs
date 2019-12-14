@@ -27,6 +27,8 @@ namespace Knigodam
             this.BindingContext = _viesModel;
         }
 
+
+
         async private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var book = e.Item as Book;
@@ -34,7 +36,18 @@ namespace Knigodam
             var lv = sender as ListView;
             //lv.IsEnabled = false;
             lv.SelectedItem = null;
+            page.BookListIsUpdated += BookListIsUpdated;
             await Navigation.PushAsync(page);
+
+            // событие привязать чтобы данные обновило
+        }
+
+        public event EventHandler BookListIsUpdatedOverall;
+
+        private void BookListIsUpdated(object sender, EventArgs e)
+        {
+            _viesModel.LoadBook();
+            BookListIsUpdatedOverall?.Invoke(this, null);
         }
     }
 }
