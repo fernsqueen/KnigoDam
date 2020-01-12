@@ -31,7 +31,12 @@ namespace Knigodam
 
         private void BookSettedConfig(object sender, EventArgs e)
         {
-            
+            if (_viewModel.Description == "None")
+            {
+                //InfoGrid.RowDefinitions[0].Height = 0;
+                //author_l1.IsVisible = false;
+                _viewModel.Description = "";
+            }
             if (_viewModel.Author == "None")
             {
                 //InfoGrid.RowDefinitions[0].Height = 0;
@@ -59,10 +64,10 @@ namespace Knigodam
             
         }
 
-        private void Button_Click(object sender, EventArgs e)
+        private async void Button_Click(object sender, EventArgs e)
         {
             // Переход на чат
-            debug.Text = "Чата нет, но кнопка есть";
+            await _viewModel.SendMessage(message.Text);
         }
     }
 }

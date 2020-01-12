@@ -26,7 +26,9 @@
                     <Label x:Name="lang_l1" Text="Язык" Grid.Column="0" Grid.Row="3" FontAttributes="Bold" TextColor="#143C3D" FontSize="Medium"/>
                     <Label x:Name="lang_l2" Text="{Binding Language}" Grid.Column="1" Grid.Row="3" FontSize="Medium"/>
                 </Grid>
-                <Button x:Name="StartChat" Text="Начать чат"
+                <Label Text="Оставьте свои контактные данные в поле ниже, если хотите получить эту книгу. Владелец получит ваше сообщение и свяжется с вами." Margin="10,0" TextColor="#2B4B45"></Label>
+                <Editor x:Name="message" Placeholder="Введите сообщение..." HeightRequest="100" Margin="10,0" BackgroundColor="#EBF2F1"></Editor>
+                <Button x:Name="StartChat" Text="Отправить сообщение" Clicked="Button_Click"
                         BorderColor="#152524" BorderRadius = "10" BackgroundColor="#8BDABF" Margin="10,0"/>
                 <Label x:Name="debug" />
             </StackLayout>

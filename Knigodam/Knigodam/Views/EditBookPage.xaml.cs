@@ -32,8 +32,8 @@ namespace Knigodam.Views
                 "Статус книги по умолчанию «Свободна», так её сможет увидеть любой пользователь.", "OK");
             var action = await DisplayActionSheet("Изменить статус", "Отмена", null, "Ожидание", "Свободна");
             _viewModel.Edit(action);
-            await DisplayAlert("Knigodam", "Статус изменён", "OK");
-            _viewModel.Status = action;
+            if (action!="Отмена") await DisplayAlert("Knigodam", "Статус изменён", "OK");
+            _viewModel.LoadStatus();
         }
 
         public event EventHandler BookListIsUpdated;

@@ -12,7 +12,7 @@ namespace Knigodam.Services.Implementation
     class SearchService : ISearchService
     {
 
-        private string uri = "http://192.168.0.100/api/v1/search&entry=";
+        private string uri = "http://192.168.0.101/api/v1/search&entry=";
         public async Task<List<BookItem>> GetSimpleSearchedBooks(string entry)
         {
             var _uri = uri + entry;

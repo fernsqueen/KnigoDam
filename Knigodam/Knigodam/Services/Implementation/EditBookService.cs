@@ -8,7 +8,7 @@ namespace Knigodam.Services.Implementation
 {
     class EditBookService : IEditBookService
     {
-        private string uri_delete = "http://192.168.0.100/api/v1/books/";
+        private string uri_delete = "http://192.168.0.101/api/v1/books/";
 
         public async Task DeleteBook(int id)
         {

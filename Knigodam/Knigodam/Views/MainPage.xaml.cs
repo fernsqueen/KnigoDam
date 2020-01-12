@@ -66,13 +66,14 @@ namespace Knigodam
 
         async private void AddBookButton_Clicked(object sender, EventArgs e)
         {
-            AddBookPage page = new AddBookPage();
+            AddBookPage page = new AddBookPage(_viewModel.User);
+            page.BookListIsUpdated += BookListIsUpdated;
             await Navigation.PushAsync(page);
         }
 
         async private void DMButton_Clicked(object sender, EventArgs e)
         {
-            DMPage page = new DMPage();
+            DMPage page = new DMPage(_viewModel.User);
             await Navigation.PushAsync(page);
         }
 

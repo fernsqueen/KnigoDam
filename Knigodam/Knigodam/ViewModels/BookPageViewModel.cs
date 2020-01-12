@@ -15,6 +15,7 @@ namespace Knigodam.ViewModels
         static void RegisterMyService()
         {
             //Service<IBookService>.RegisterService(new FakeBookService());
+            Service<IMessagesService>.RegisterService(new MessagesService());
             Service<IBookService>.RegisterService(new BookService());
             //Service<IBooksItemService>.RegisterService(new BookItemService());
             //Service<IBooksItemService>.RegisterService(new FakeBookItemService());
@@ -108,6 +109,12 @@ namespace Knigodam.ViewModels
         {
             var books = await Service<IBookService>.GetInstance().GetBook(_book.Id);
             return books;
+        }
+
+        public async Task<bool> SendMessage(string _text)
+        {
+            var mess = await Service<IMessagesService>.GetInstance().SendMessage(_book, _text);
+            return mess;
         }
     }
 }

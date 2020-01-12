@@ -5,6 +5,7 @@ using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Knigodam.ViewModels
 {
@@ -13,6 +14,7 @@ namespace Knigodam.ViewModels
         static void RegisterMyService()
         {
             Service<IEditBookService>.RegisterService(new EditBookService());
+            Service<IBookService>.RegisterService(new BookService());
         }
 
         public string imageSource;
@@ -53,6 +55,7 @@ namespace Knigodam.ViewModels
             BookTitle = book.Title;
             Id = book.Id;
             RegisterMyService();
+            LoadStatus();
         }
 
         async public void Delete()
@@ -63,6 +66,20 @@ namespace Knigodam.ViewModels
         async public void Edit(string status)
         {
             await Service<IEditBookService>.GetInstance().EditBookStatus(Id, status);
+        }
+
+
+        public async void LoadStatus()
+        {
+            var result = await GetBook();
+            var book = result as Book;
+            Status = book.Status;
+        }
+
+        async Task<Book> GetBook()
+        {
+            var books = await Service<IBookService>.GetInstance().GetBook(Id);
+            return books;
         }
     }
 }

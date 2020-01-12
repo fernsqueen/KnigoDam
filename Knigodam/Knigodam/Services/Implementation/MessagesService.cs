@@ -1,34 +1,34 @@
-﻿using Knigodam.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Knigodam.Models;
+using Newtonsoft.Json;
 
 namespace Knigodam.Services.Implementation
 {
-    class UserBooksService : IUserBooksService
+    class MessagesService : IMessagesService
     {
-        private string uri = "http://192.168.0.101/api/v1/user/id/books";
-        List<Book> books;
-        public async Task<List<Book>> GetUserBooks(int userId)
+        private string uri = "http://192.168.0.101/api/v1/messages/";
+        public async Task<List<Message>> GetMessages(int userId)
         {
-            var _uri = uri.Replace("id", userId.ToString());
+            //TODO: Загрузка данных
+            var _uri = uri + userId.ToString();
             var client = new HttpClient();
             var result = await client.GetAsync(_uri);
             var content = await result.Content.ReadAsStringAsync();
 
-            var json_books = JsonConvert.DeserializeObject<List<booksitem>>(content);
-            var books = new List<Book>();
+            var json_message = JsonConvert.DeserializeObject<List<message_item>>(content);
+            var messages = new List<Message>();
 
-            foreach (booksitem book in json_books)
+            foreach (message_item message in json_message)
             {
 
-                string base64str = book.img;
+                string base64str = message.img;
                 byte[] bytes = Convert.FromBase64String(base64str);
-                string saveLocation = GetFilePath(book.id.ToString() + ".jpg");
+                string saveLocation = GetFilePath(json_message.IndexOf(message).ToString() + message.title.Substring(0,4) + ".jpg");
                 FileStream fs = new FileStream(saveLocation, FileMode.Create);
                 BinaryWriter bw = new BinaryWriter(fs);
                 try
@@ -40,11 +40,22 @@ namespace Knigodam.Services.Implementation
                     fs.Close();
                     bw.Close();
                 }
-                Book new_book = new Book { Id = book.id, Title = book.title, ImagePath = saveLocation };
-                books.Add(new_book);
+                Message new_message = new Message { Title = message.title, ImagePath = saveLocation, MessageText = message.text };
+                messages.Add(new_message);
             }
 
-            return books;
+            return messages;
+        }
+
+        private string uri_send = "http://192.168.0.101/api/v1/messages/send%text=";
+
+        public async Task<bool> SendMessage(Book book, string message)
+        {
+            var _uri_send = uri_send + message + "&user_id=" +
+                book.UserId.ToString() + "&book_id=" + book.Id.ToString();
+            var client = new HttpClient();
+            var result = await client.GetAsync(_uri_send);
+            return true;
         }
 
         public async Task SaveTextAsync(string filename, string text)
@@ -67,14 +78,9 @@ namespace Knigodam.Services.Implementation
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
-        private class JsonItem
+        public class message_item
         {
-            public List<booksitem> books { get; set; }
-        }
-
-        public class booksitem
-        {
-            public int id { get; set; }
+            public string text { get; set; }
             public string title { get; set; }
             public string img { get; set; }
         }

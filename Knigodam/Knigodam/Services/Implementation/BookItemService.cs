@@ -12,7 +12,7 @@ namespace Knigodam.Services.Implementation
 {
     class BookItemService : IBooksItemService
     {
-        private string uri = "http://192.168.0.100/api/v1/books";
+        private string uri = "http://192.168.0.101/api/v1/books";
         public async Task<List<BookItem>> GetBooks()
         {
             //TODO: Загрузка данных

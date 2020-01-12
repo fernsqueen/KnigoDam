@@ -1,4 +1,5 @@
 ﻿using Knigodam.Models;
+using Knigodam.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,34 @@ namespace Knigodam
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DMPage : ContentPage
     {
+        DMPageViewModel _viewModel;
         public List<Message> Messages { get; set; }
-        public DMPage()
+        public DMPage(User user)
         {
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Messages = new List<Message>
-        {
-            new Message {Title="Тобол. Мало избранных", ImagePath="tobol.jpg", MessageText="Привет!", MessageDate ="15:34"},
-            new Message {Title="Python для детей", ImagePath="python.jpg", MessageText="Спасибо большое!", MessageDate ="Mon" },
-        };
+            _viewModel = new DMPageViewModel(user);
 
-            this.BindingContext = this;
+            _viewModel.MessagesListIsEmpty += BookListIsEmpty;
+
+            _viewModel.MessagesListIsNotEmpty += BookListIsNotEmpty;
+
+
+            this.BindingContext = _viewModel;
+        }
+
+        private void BookListIsNotEmpty(object sender, EventArgs e)
+        {
+            messageList.IsVisible = true;
+            EmptyList.IsVisible = false;
+        }
+
+        private void BookListIsEmpty(object sender, EventArgs e)
+        {
+            messageList.IsVisible = false;
+            EmptyList.IsVisible = true;
         }
 
         async private void OnItemTapped(object sender, ItemTappedEventArgs e)
