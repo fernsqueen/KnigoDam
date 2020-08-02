@@ -11,7 +11,7 @@ namespace Knigodam.Services.Implementation
 {
     class UserBooksService : IUserBooksService
     {
-        private string uri = "http://192.168.0.101/api/v1/user/id/books";
+        private string uri = "http://10.155.58.157/api/v1/user/id/books";
         List<Book> books;
         public async Task<List<Book>> GetUserBooks(int userId)
         {

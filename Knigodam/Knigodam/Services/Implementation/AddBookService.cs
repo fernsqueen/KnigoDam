@@ -10,7 +10,7 @@ namespace Knigodam.Services.Implementation
 {
     class AddBookService : IAddBookService
     {
-        private string uri = "http://192.168.0.101/api/v1/books/add%";
+        private string uri = "http://10.155.58.157/api/v1/books/add%";
         public async Task<bool> AddBook(Book book)
         {
             //var fB = File.ReadAllBytes(book.ImagePath);

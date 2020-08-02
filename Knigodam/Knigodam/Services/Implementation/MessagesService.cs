@@ -11,7 +11,7 @@ namespace Knigodam.Services.Implementation
 {
     class MessagesService : IMessagesService
     {
-        private string uri = "http://192.168.0.101/api/v1/messages/";
+        private string uri = "http://10.155.58.157/api/v1/messages/";
         public async Task<List<Message>> GetMessages(int userId)
         {
             //TODO: Загрузка данных
@@ -47,7 +47,7 @@ namespace Knigodam.Services.Implementation
             return messages;
         }
 
-        private string uri_send = "http://192.168.0.101/api/v1/messages/send%text=";
+        private string uri_send = "http://10.155.58.157/api/v1/messages/send%text=";
 
         public async Task<bool> SendMessage(Book book, string message)
         {
